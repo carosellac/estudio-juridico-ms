@@ -1,0 +1,55 @@
+---
+// Header/Navbar component - reutilizable en todas las páginas
+interface Props {
+  transparent?: boolean;
+}
+
+const { transparent = false } = Astro.props;
+---
+
+<header class={`w-full z-50 ${transparent ? 'absolute top-0 left-0' : 'bg-[#0c3559]'}`}>
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex justify-between items-center">
+      <!-- Logo -->
+      <a href="/" class="text-xl md:text-2xl font-bold text-white">
+        Estudio Jurídico <span class="text-[#c8a456]">MS</span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex gap-6 text-sm text-white">
+        <a href="/#nosotros" class="hover:text-[#c8a456] transition">Nosotros</a>
+        <a href="/#servicios" class="hover:text-[#c8a456] transition">Servicios</a>
+        <a href="/#proceso" class="hover:text-[#c8a456] transition">Proceso</a>
+        <a href="/#testimonios" class="hover:text-[#c8a456] transition">Testimonios</a>
+        <a href="/#contacto" class="bg-[#c8a456] hover:bg-[#b89345] px-4 py-2 rounded-md transition">Contacto</a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="menu-btn" class="md:hidden text-white focus:outline-none" aria-label="Abrir menú">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-white/20 pt-4">
+      <div class="flex flex-col gap-4 text-white text-center">
+        <a href="/#nosotros" class="hover:text-[#c8a456] transition">Nosotros</a>
+        <a href="/#servicios" class="hover:text-[#c8a456] transition">Servicios</a>
+        <a href="/#proceso" class="hover:text-[#c8a456] transition">Proceso</a>
+        <a href="/#testimonios" class="hover:text-[#c8a456] transition">Testimonios</a>
+        <a href="/#contacto" class="bg-[#c8a456] hover:bg-[#b89345] px-4 py-2 rounded-md transition inline-block">Contacto</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>
